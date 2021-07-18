@@ -40,5 +40,5 @@ If \code{filetype = 'csv2'}, then \code{\link[utils]{read.csv2}} is used
 \code{.txt} files. This is just tab-delimited text.
 }
 \seealso{
-\code{\link[idlabelR]{make_ids}}.
+\code{\link[idLabelR]{make_ids}}.
 }

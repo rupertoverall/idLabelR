@@ -79,6 +79,6 @@ ids = make_ids(file = example_spreadsheet)
 
 }
 \seealso{
-\code{\link[idlabelR]{read_db}}, or \code{\link[idlabelR]{write_db}}
+\code{\link[idLabelR]{read_db}}, or \code{\link[idLabelR]{write_db}}
   for additional information on the readable/writeable file formats.
 }

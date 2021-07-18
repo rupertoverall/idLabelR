@@ -45,5 +45,5 @@ commas are used as decimal separators as is common in Europe).
 used for the input file will be used to write the output.
 }
 \seealso{
-\code{\link[idlabelR]{make_ids}}.
+\code{\link[idLabelR]{make_ids}}.
 }
