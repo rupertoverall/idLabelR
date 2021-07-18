@@ -1,5 +1,5 @@
 
-idLabelR <img src="man/figures/logo.png" align="right" alt="" width="120" />
+idLabelR <img src="man/figures/Logo.png" align="right" alt="" width="120" />
 =========================================================================
 
 The idLabelR package
