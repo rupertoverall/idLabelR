@@ -1,3 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^.*\.gitignore$
+index.md
+README.md
+man/figures/LogoPackage.png
+man/figures/LogoDocs.png
