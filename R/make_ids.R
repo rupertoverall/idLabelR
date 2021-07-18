@@ -49,7 +49,7 @@
 #' @return Invisibly returns the randomised IDs (in the order they appear in the
 #'   spreadsheet) as a character vector.
 #'
-#' @seealso \code{\link[idlabelR]{read_db}}, or \code{\link[idlabelR]{write_db}}
+#' @seealso \code{\link[idLabelR]{read_db}}, or \code{\link[idLabelR]{write_db}}
 #'   for additional information on the readable/writeable file formats.
 #'
 #' @examples
