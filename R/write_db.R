@@ -32,7 +32,7 @@
 #' @param ... Additional parameters passed to the file reader. The parameters
 #'   accepted depend on the input filetype.
 #'
-#' @seealso \code{\link[idlabelR]{make_ids}}.
+#' @seealso \code{\link[idLabelR]{make_ids}}.
 #'
 #' @importFrom tools file_path_sans_ext
 #' @importFrom openxlsx write.xlsx
