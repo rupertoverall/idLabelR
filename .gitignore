@@ -1,0 +1,6 @@
+.Rproj*
+.Rhistory
+.Rbuildignore
+.RData
+.Ruserdata
+.DS_Store
