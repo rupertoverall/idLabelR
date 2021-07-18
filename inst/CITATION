@@ -1,0 +1,13 @@
+citHeader("To cite idLabelR in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "idLabelR",
+  author   = "Rupert W Overall",
+  url      = "https://github.com/rupertoverall/idLabelR",
+  year = 2021,
+  note = "R package version 0.1.0",
+  textVersion = "Rupert W Overall (2021). idLabelR: Create and Print Randomised Experiment Sample ID Labels. R package version 0.1.0. https://github.com/rupertoverall/idLabelR",
+  header = NULL,
+  footer = NULL
+)

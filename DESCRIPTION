@@ -1,0 +1,23 @@
+Package: idLabelR
+Type: Package
+Title: Creation of Experiment IDs and Printable ID Labels
+Version: 0.1.0
+Authors@R: person("Rupert", "Overall", email = "rtrack@rupertoverall.net",
+	role = c("aut", "cre"), comment = c(ORCID = "0000-0002-3882-6073"))
+Maintainer: Rupert Overall <rtrack@rupertoverall.net>
+URL: https://rupertoverall.net/Rtrack/, https://github.com/rupertoverall/idLabelR
+BugReports: https://github.com/rupertoverall/idLabelR/issues
+Description: A utility for the generation of randomised human-readable and error-safe IDs
+	for experimental subjects. Allows easy and rapid   formatting of printable labels directly from an experiment database.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+	grDevices,
+	graphics,
+	openxlsx,
+	readODS,
+	readxl,
+	tools,
+	utils
+RoxygenNote: 7.1.1
