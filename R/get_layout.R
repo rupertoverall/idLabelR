@@ -36,7 +36,7 @@ get_layout = function(label.type){
 		)
 	}
 
-	if(layout == NULL) warning("There is no available label configuration for '", label.type, "'.")
+	if(is.null(layout)) warning("There is no available label configuration for '", label.type, "'.")
 	return(layout)
 }
 
