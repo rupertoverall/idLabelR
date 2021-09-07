@@ -29,6 +29,9 @@ get_layout = function(label.type){
 			units = "mm",
 			text.font = 2, # Bold.
 			text.size = 1, # 100% default size.
+			sublabel.font = 1, # Normal.
+			sublabel.size = 0.5, # 50% default size.
+			sublabel.offset = 2, # Distance below ID text.
 			# Optional date-of-printing timestamp position.
 			timestamp.x = 210 - 15,
 			timestamp.y = 17,

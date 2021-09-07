@@ -91,8 +91,8 @@ make_pdf = function(ids, layout, byRow = TRUE, sublabel = NULL, printing = NULL,
 				text = pages[[p]][n]
 				for(xi in 1:length(layout$label.x)){
 					x = layout$label.x[xi]
-					graphics::text(x, y, text, adj = c(0.5, NA), cex = 1, font = 2)
-					graphics::text(x, y, as.character(sublabel[xi]), adj = c(0.5, 2.5 * 0.75), cex = 0.75, font = 1)
+					graphics::text(x, y, text, adj = c(0.5, NA), cex = layout$text.size, font = layout$text.font)
+					graphics::text(x, y, as.character(sublabel[xi]), adj = c(0.5, layout$sublabel.offset), cex = layout$sublabel.size, font = layout$sublabel.font)
 				}
 				n = n + 1
 			}
@@ -112,8 +112,8 @@ make_pdf = function(ids, layout, byRow = TRUE, sublabel = NULL, printing = NULL,
 				text = pages[[p]][n]
 				for(yi in 1:length(layout$label.y)){
 					y = layout$label.y[yi]
-					graphics::text(x, y, text, adj = c(0.5, 0.5), cex = 1, font = 2)
-					graphics::text(x, y, as.character(sublabel[yi]), adj = c(0.5, 2.5 * 0.75), cex = 0.75, font = 1)
+					graphics::text(x, y, text, adj = c(0.5, NA), cex = layout$text.size, font = layout$text.font)
+					graphics::text(x, y, as.character(sublabel[yi]), adj = c(0.5, layout$sublabel.offset), cex = layout$sublabel.size, font = layout$sublabel.font)
 				}
 				n = n + 1
 			}
