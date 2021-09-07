@@ -82,6 +82,10 @@ make_pdf = function(ids, layout, byRow = TRUE, printing = NULL, file = "Labels.p
 				}
 				n = n + 1
 			}
+			# Add vertical date and sheet stamp.
+			if(!is.null(printing) & !is.null(layout$timestamp.x) & !is.null(layout$timestamp.y) & !is.null(layout$timestamp.size)){
+				graphics::text(layout$timestamp.x, layout$timestamp.y, paste0("Page  ", p, printing, "  ", Sys.Date()), adj = c(0, 0), cex = layout$timestamp.size, srt = -90)
+			}
 		}
 	}else{
 		pages = split.vector(ids, n = length(layout$label.x))
@@ -97,13 +101,13 @@ make_pdf = function(ids, layout, byRow = TRUE, printing = NULL, file = "Labels.p
 				}
 				n = n + 1
 			}
+			# Add vertical date and sheet stamp.
+			if(!is.null(printing) & !is.null(layout$timestamp.x) & !is.null(layout$timestamp.y) & !is.null(layout$timestamp.size)){
+				graphics::text(layout$timestamp.x, layout$timestamp.y, paste0("Page  ", p, printing, "  ", Sys.Date()), adj = c(0, 0), cex = layout$timestamp.size, srt = -90)
+			}
 		}
 	}
 
-	# Add vertical date and sheet stamp.
-	if(!is.null(printing) & !is.null(layout$timestamp.x) & !is.null(layout$timestamp.y) & !is.null(layout$timestamp.size)){
-		graphics::text(layout$timestamp.x, layout$timestamp.y, paste0("Page  ", p, printing, "  ", Sys.Date()), adj = c(0, 0), cex = layout$timestamp.size, srt = -90)
-	}
 
 	grDevices::dev.off()
 }
