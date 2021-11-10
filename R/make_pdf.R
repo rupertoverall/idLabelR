@@ -76,9 +76,9 @@ make_pdf = function(ids, layout, byRow = TRUE, sublabel = NULL, printing = NULL,
 	  remainder = NULL
 	  if(ceiling(length(v)/n) > ncols) remainder = list(v[(n * ncols + 1):length(v)])
 	  if(ncols > 0){
-	  	return(c(split(v[1:(n * ncols)], rep(1:ncols, each=n)), remainder))
+	  	return(unname(c(split(v[1:(n * ncols)], rep(1:ncols, each=n)), remainder)))
 	  }else{
-	  	return(list(v[(n * ncols + 1):length(v)]))
+	  	return(unname(list(v[(n * ncols + 1):length(v)])))
 	  }
 	}
 
