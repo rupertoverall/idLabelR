@@ -7,7 +7,7 @@
 make_ids(
   file,
   range = c(0, 0),
-  format = "X.?.@",
+  format = "X.?.#",
   filetype = "auto",
   seed = 1,
   ...
@@ -25,7 +25,7 @@ future (which should be randomised together) or if the numbering should not
 start at 1, then this option can be used to override the default.}
 
 \item{format}{A string specifying the components making up the ID. See
-Details to learn how to customise this.}
+Details to learn how to customise this. The default is "X.?.#".}
 
 \item{filetype}{The filetype of the input spreadsheet. Microsoft Excel
 (\code{.xlsx} and \code{.xls}) and Open Document Format (\code{.ods}; as
@@ -68,14 +68,14 @@ Adjacent symbols will be collapsed, but it is possible (not particularly
 recommended) to have the number appear multiple times. \item \code{@} is a
 control character (letters that may be ambiguously written or confused with
 digits are not used) that is useful as a control to distinguish
-easily-confused ID numbers. \item \code{#} is a checksum character. This is
-not yet implemented. }
+easily-confused ID numbers. \item \code{#} is a checksum character generated
+using the Verhoeff algorithm. }
 }
 \examples{
 require(idLabelR)
 
 example_spreadsheet = system.file("extdata", "Example.txt", package = "idLabelR")
-ids = make_ids(file = example_spreadsheet)
+ids = make_ids(file = example_spreadsheet, format = "MyExpt.?.#")
 
 }
 \seealso{
