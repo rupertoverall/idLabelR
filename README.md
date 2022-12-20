@@ -17,6 +17,6 @@ remotes::install_github("rupertoverall/idLabelR")
 Getting started
 ----------------------------------------------------------------------------------------------------------------
 
-To get started using idLabelR, have a look at the [quick start guide](https://rupertoverall.net/articles/idLabelR_quickstart.html)
+To get started using idLabelR, have a look at the [quick start guide](https://rupertoverall.net/idLabelR/articles/idLabelR_quickstart_page.html)
 
 For more information, take a look at the [idLabelR website](https://rupertoverall.net/idLabelR)
