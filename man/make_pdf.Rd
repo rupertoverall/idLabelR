@@ -29,7 +29,7 @@ ID. This allows the replicate label (for the same ID) to be distinguished
 (to label, for example, different samples, tissues, replicate numbers,
 collection sites or dates). When \code{byRow} is TRUE, then this vector
 should be the same length as the number of columns in the label layout; or
-the length of the number of rows id \code{byRow} is FALSE.}
+the length of the number of rows if \code{byRow} is FALSE.}
 
 \item{printing}{An optional character to identify multiple copies of the same
 label sheet. Default is to ignore this feature.}
