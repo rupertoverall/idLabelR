@@ -21,15 +21,19 @@ make_pdf(
 \item{layout}{A \code{\link{list}} object describing the layout of labels on
 the sheet to be printed. See Details to learn how to customise this.}
 
-\item{byRow}{By default, IDs are repeated for all labels in a row. If
-\code{byRow = FALSE}, then IDs are repeated for all labels in a column.}
+\item{byRow}{By default (\code{byRow = TRUE}), IDs are repeated for all
+labels in a row. If \code{byRow = FALSE}, then IDs are repeated for all
+labels in a column. It is also possible to set \code{byRow = NULL}, which
+will print each ID on one label only.}
 
 \item{sublabel}{An optional character vector that will be printed under the
 ID. This allows the replicate label (for the same ID) to be distinguished
 (to label, for example, different samples, tissues, replicate numbers,
 collection sites or dates). When \code{byRow} is TRUE, then this vector
 should be the same length as the number of columns in the label layout; or
-the length of the number of rows if \code{byRow} is FALSE.}
+the length of the number of rows if \code{byRow} is FALSE. If \code{byRow}
+is NULL, then specify only one sublabel (if a vector is supplied, only the
+first element will be used).}
 
 \item{printing}{An optional character to identify multiple copies of the same
 label sheet. Default is to ignore this feature.}
