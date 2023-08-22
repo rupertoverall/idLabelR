@@ -30,10 +30,10 @@ Details to learn how to customise this. The default is "X.?.#".}
 \item{filetype}{The filetype of the input spreadsheet. Microsoft Excel
 (\code{.xlsx} and \code{.xls}) and Open Document Format (\code{.ods}; as
 used by OpenOffice/LibreOffice for example) are supported, as are comma-
-and tab-delimited formats (\code{.csv}, \code{.tsv} or \code{.txt}). The
-default behaviour is to guess the format from the file extension. If this
-does not work or you know better than the machine, then this option can be
-used to specify the filetype.}
+and tab-delimited formats (\code{.csv}, \code{.tsv}, \code{.tab} or
+\code{.txt}). The default behaviour is to guess the format from the file
+extension. If this does not work or you know better than the machine, then
+this option can be used to specify the filetype.}
 
 \item{seed}{The seed used to randomise the IDs. There is no real reason that
 this should need to be changed, but you can if you want to.}
