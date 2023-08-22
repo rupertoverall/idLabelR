@@ -73,7 +73,7 @@ make_ids = function(file, range = c(0, 0), format = "X.?.#", filetype = "auto", 
 		range = range(as.numeric(range))
 	}
 
-	if(abs(diff(range)) < nrow(df)){
+	if(abs(diff(range)) + 1 < nrow(df)){ # Inclusive number range.
 		stop("Not enough unique ID numbers have been specified.")
 	}
 	letter.options = c("a", "b", "c", "e", "f", "g", "h", "k", "m", "v")
@@ -83,9 +83,9 @@ make_ids = function(file, range = c(0, 0), format = "X.?.#", filetype = "auto", 
 	id.checkletters = rep("", length = length(id.numbers))
 
 	if(length(grep("\\?", format)) == 0){
-		stop("There is no ID number specified in the format")
+		stop("There is no ID number specified in the format.")
 	}else if(length(grep("\\?", format)) > 1){
-		warning("There are multiple ID numbers specified in the format")
+		warning("There are multiple ID numbers specified in the format.")
 	}
 
 	if(grepl("\\#", format)){
@@ -125,7 +125,7 @@ make_ids = function(file, range = c(0, 0), format = "X.?.#", filetype = "auto", 
 	}
 
 
-	ids = as.character(sapply(1:nrow(df), function(n){
+	ids = as.character(sapply(seq_len(nrow(df)), function(n){
 		gsub("\\#+", id.checkletters[n], gsub("\\@+", id.letters[n], gsub("\\?+", id.numbers[n], format)))
 	}))
 
