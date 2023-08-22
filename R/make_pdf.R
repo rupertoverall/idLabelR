@@ -12,14 +12,18 @@
 #'   \code{\link[idLabelR]{make_ids}}.
 #' @param layout A \code{\link{list}} object describing the layout of labels on
 #'   the sheet to be printed. See Details to learn how to customise this.
-#' @param byRow By default, IDs are repeated for all labels in a row. If
-#'   \code{byRow = FALSE}, then IDs are repeated for all labels in a column.
+#' @param byRow By default (\code{byRow = TRUE}), IDs are repeated for all
+#'   labels in a row. If \code{byRow = FALSE}, then IDs are repeated for all
+#'   labels in a column. It is also possible to set \code{byRow = NULL}, which
+#'   will print each ID on one label only.
 #' @param sublabel An optional character vector that will be printed under the
 #'   ID. This allows the replicate label (for the same ID) to be distinguished
 #'   (to label, for example, different samples, tissues, replicate numbers,
 #'   collection sites or dates). When \code{byRow} is TRUE, then this vector
 #'   should be the same length as the number of columns in the label layout; or
-#'   the length of the number of rows if \code{byRow} is FALSE.
+#'   the length of the number of rows if \code{byRow} is FALSE. If \code{byRow}
+#'   is NULL, then specify only one sublabel (if a vector is supplied, only the
+#'   first element will be used).
 #' @param printing An optional character to identify multiple copies of the same
 #'   label sheet. Default is to ignore this feature.
 #' @param file The name of the file to be written to. The default is
@@ -63,10 +67,12 @@ make_pdf = function(ids, layout, byRow = TRUE, sublabel = NULL, printing = NULL,
 	}
 
 	# Format sublabel.
-	if(byRow){
-		sublabel = paste0(rep("", length(layout$label.x)), as.character(sublabel))[1:length(layout$label.x)]
+	if(is.null(byRow)){ # Print one copy only of each label.
+		sublabel = as.character(sublabel)[1] # Only one value used, and repeated for all labels.
+	}else if(byRow){
+		sublabel = paste0(rep("", length(layout$label.x)), as.character(sublabel))[seq_along(layout$label.x)]
 	}else{
-		sublabel = paste0(rep("", length(layout$label.y)), as.character(sublabel))[1:length(layout$label.y)]
+		sublabel = paste0(rep("", length(layout$label.y)), as.character(sublabel))[seq_along(layout$label.y)]
 	}
 
 	if(!is.null(printing)) printing = paste0("_", printing)
@@ -82,16 +88,37 @@ make_pdf = function(ids, layout, byRow = TRUE, sublabel = NULL, printing = NULL,
 	  }
 	}
 
-	if(byRow){
+	if(is.null(byRow)){
+		pages = split.vector(ids, n = length(layout$label.x) * length(layout$label.y))
+		grDevices::pdf(file = paste0(tools::file_path_sans_ext(file), printing, ".pdf"), width = layout$page.width, height = layout$page.height)
+		graphics::par(mar = c(0, 0, 0, 0))
+		for(p in seq_along(pages)){
+			n = 1
+			plot(0, xlim=c(0, layout$page.width), ylim=c(layout$page.height, 0), ann=F, bty="n", type="n", xaxt = "n", yaxt = "n", xaxs = "i", yaxs = "i")
+			for(y in layout$label.y){
+				for(xi in seq_along(layout$label.x)){
+					text = pages[[p]][n]
+					x = layout$label.x[xi]
+					graphics::text(x, y, text, adj = c(0.5, NA), cex = layout$text.size, font = layout$text.font)
+					graphics::text(x, y, as.character(sublabel), adj = c(0.5, layout$sublabel.offset), cex = layout$sublabel.size, font = layout$sublabel.font)
+					n = n + 1
+				}
+			}
+			# Add vertical date and sheet stamp.
+			if(!is.null(printing) & !is.null(layout$timestamp.x) & !is.null(layout$timestamp.y) & !is.null(layout$timestamp.size)){
+				graphics::text(layout$timestamp.x, layout$timestamp.y, paste0("Page  ", p, printing, "  ", Sys.Date()), adj = c(0, 0), cex = layout$timestamp.size, srt = -90)
+			}
+		}
+	}else if(byRow){
 		pages = split.vector(ids, n = length(layout$label.y))
 		grDevices::pdf(file = paste0(tools::file_path_sans_ext(file), printing, ".pdf"), width = layout$page.width, height = layout$page.height)
 		graphics::par(mar = c(0, 0, 0, 0))
-		for(p in 1:length(pages)){
+		for(p in seq_along(pages)){
 			n = 1
 			plot(0, xlim=c(0, layout$page.width), ylim=c(layout$page.height, 0), ann=F, bty="n", type="n", xaxt = "n", yaxt = "n", xaxs = "i", yaxs = "i")
 			for(y in layout$label.y){
 				text = pages[[p]][n]
-				for(xi in 1:length(layout$label.x)){
+				for(xi in seq_along(layout$label.x)){
 					x = layout$label.x[xi]
 					graphics::text(x, y, text, adj = c(0.5, NA), cex = layout$text.size, font = layout$text.font)
 					graphics::text(x, y, as.character(sublabel[xi]), adj = c(0.5, layout$sublabel.offset), cex = layout$sublabel.size, font = layout$sublabel.font)
@@ -107,12 +134,12 @@ make_pdf = function(ids, layout, byRow = TRUE, sublabel = NULL, printing = NULL,
 		pages = split.vector(ids, n = length(layout$label.x))
 		grDevices::pdf(file = paste0(tools::file_path_sans_ext(file), printing, ".pdf"), width = layout$page.width, height = layout$page.height)
 		graphics::par(mar = c(0, 0, 0, 0))
-		for(p in 1:length(pages)){
+		for(p in seq_along(pages)){
 			n = 1
 			plot(0, xlim=c(0, layout$page.width), ylim=c(layout$page.height, 0), ann=F, bty="n", type="n", xaxt = "n", yaxt = "n", xaxs = "i", yaxs = "i")
 			for(x in layout$label.x){
 				text = pages[[p]][n]
-				for(yi in 1:length(layout$label.y)){
+				for(yi in seq_along(layout$label.y)){
 					y = layout$label.y[yi]
 					graphics::text(x, y, text, adj = c(0.5, NA), cex = layout$text.size, font = layout$text.font)
 					graphics::text(x, y, as.character(sublabel[yi]), adj = c(0.5, layout$sublabel.offset), cex = layout$sublabel.size, font = layout$sublabel.font)
